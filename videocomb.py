@@ -9,6 +9,7 @@ from tkinterdnd2 import DND_FILES, TkinterDnD
 import os
 import subprocess
 import threading
+import tempfile
 from pathlib import Path
 from tkinter import filedialog, messagebox
 import re
@@ -373,7 +374,7 @@ class VideoCombApp(ctk.CTk, TkinterDnD.DnDWrapper):
         """Run FFmpeg to combine videos"""
         try:
             # Create a temporary file list for FFmpeg
-            temp_dir = Path("/tmp/videocomb")
+            temp_dir = Path(tempfile.gettempdir()) / "videocomb"
             temp_dir.mkdir(exist_ok=True)
             list_file = temp_dir / "filelist.txt"
             
